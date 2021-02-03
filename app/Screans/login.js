@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faArrowLeft,} from '@fortawesome/free-solid-svg-icons';
 
 
-const Login = () => {
+const Login = ({navigation}) => {
   const [email,setEmail] = useState('');
   const [password,setPassword] = useState('');
   const handleEmail = (text) => {
@@ -12,21 +12,24 @@ const Login = () => {
   }
 
   const login = () => {
-    Alert.alert(
-      "Login Al",
-      "Email : "+email+ " AND Password : "+password,
-      [
-        { text: "OK", onPress: () => console.log("OK Pressed") }
-      ],
-      { cancelable: false }
-    );
+    // Alert.alert(
+    //   "Login Al",
+    //   "Email : "+email+ " AND Password : "+password,
+    //   [
+    //     { text: "OK", onPress: () => console.log("OK Pressed") }
+    //   ],
+    //   { cancelable: false }
+    // );
+    navigation.navigate('Sign');
  }
   return (
     <> 
         <View style={styles.container}>
-        <FontAwesomeIcon style ={styles.iconArrow} onPress={login} icon={faArrowLeft}/>
+        <TouchableOpacity style ={{display:"flex",alignItems:"center",justifyContent:'center',position:"absolute",marginTop:15,top:0,left:0,width:50,height:50}} onPress = {() => navigation.navigate('add')}> 
+        <FontAwesomeIcon icon={faArrowLeft}/>
+        </TouchableOpacity>
         <Text style = {styles.titleText}> Vehicle Rental</Text>
-          <Image style = {styles.home} source={require('./asset/home.jpg')} />
+          <Image style = {styles.home} source={require('./../asset/home.jpg')} />
           <View style={styles.Form}>
               <TextInput style = {styles.input}
                 underlineColorAndroid = "transparent"
@@ -40,13 +43,12 @@ const Login = () => {
                 placeholderTextColor = '#676060' 
                 autoCapitalize = "none"
                 onChangeText = {text => setPassword(text)}/>
-              <TouchableOpacity 
-              style = {styles.loginButton}
-              onPress = {login}>
+              <TouchableOpacity onPress = {() => navigation.navigate('dash')}
+              style = {styles.loginButton}>
                 <Text style = {styles.log}>LOGIN</Text>
               </TouchableOpacity>
               <Text style = {styles.titleText2}>I have no an account.</Text>
-              <TouchableOpacity style ={{backgroundColor:"#ffffff"}}>
+              <TouchableOpacity onPress = {() => navigation.navigate('sign')} style ={{backgroundColor:"#ffffff"}}>
                 <Text style ={styles.regs}>Regester here</Text>
               </TouchableOpacity>
           </View>

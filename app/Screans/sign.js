@@ -4,19 +4,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faArrowLeft,} from '@fortawesome/free-solid-svg-icons';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { CheckBox } from 'react-native-elements';
-import Login from './login';
 
 
-const Sign = () => {
+
+const Sign = ({navigation}) => {
 
   return (
     <>
         <StatusBar barStyle="dark-content" />
-          {/*<Login/>*/}
       <View style={styles.container}>
-          <FontAwesomeIcon style ={styles.iconArrow} icon={faArrowLeft}/>
+        <TouchableOpacity style ={{display:"flex",alignItems:"center",justifyContent:'center',position:"absolute",marginTop:15,top:0,left:0,width:50,height:50}} onPress = {() => navigation.navigate('add')}> 
+          <FontAwesomeIcon icon={faArrowLeft}/>
+          </TouchableOpacity>
           <Text style = {styles.titleTexts}> Vehicle Rental</Text>
-          <Image style = {styles.sign_up} source={require('./asset/sign_up.jpg')}/>
+          <Image style = {styles.sign_up} source={require('./../asset/sign_up.jpg')}/>
           <View style={styles.Forms}>
               <TextInput style = {styles.input}
                 underlineColorAndroid = "transparent"
@@ -63,12 +64,12 @@ const Sign = () => {
                 containerStyle = {{backgroundColor:"none",borderColor:"#fff",marginTop :-9,marginBottom :-10,right :14}}
                 // checked={this.state.checked}
               />
-              <TouchableOpacity 
+              <TouchableOpacity onPress = {() => navigation.navigate('dash')}
                  style = {styles.loginButton}>
                 <Text style = {styles.log}>SIGN UP</Text>
               </TouchableOpacity>
               <Text style = {styles.titleText2}>Already have an account</Text> 
-              <TouchableOpacity style ={{backgroundColor:"#ffffff"}}>
+              <TouchableOpacity onPress = {() => navigation.navigate('dash')} style ={{backgroundColor:"#ffffff"}}>
                 <Text style ={styles.regs}>Login here</Text>
               </TouchableOpacity>   
           </View> 

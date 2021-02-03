@@ -1,64 +1,52 @@
+import 'react-native-gesture-handler';
 import React,{useState} from 'react';
-import {StyleSheet,View,Text,StatusBar,Image,TouchableOpacity,TextInput,Alert,Animated} from 'react-native';
+import {StyleSheet,View,Text,StatusBar,TouchableOpacity} from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faArrowLeft,faBars,faPlusSquare,faTasks,faList,faEdit,faKey} from '@fortawesome/free-solid-svg-icons';
-import DropDownPicker from 'react-native-dropdown-picker';
-import { CheckBox,Header,Slider } from 'react-native-elements';
-import Login from './login';
-import Sign from './sign';
-import Profile from './profile';
-import Add from './add';
-import About from './about';
-import Filter from './filter';
-import Rentadd from './rentAdd';
+import { faBars,faPlusSquare,faTasks,faList,faEdit,faKey} from '@fortawesome/free-solid-svg-icons';
 
 
-const Manage = () => {
+
+const Manage = ({navigation}) => {
 
   return (
     <>
               <StatusBar barStyle="dark-content" />
-                  {/*<Login/>*/}
-                  {/*<Sign/>*/}
-                  {/*<Profile/>*/}
-                  {/*<Add/>*/}
-                  {/*<About/>*/}
-                  {/*<Filter/>*/}
-                  {/*<Rentadd/>*/}
         <View style={styles.container}>
                 <View style ={styles.header}>
+                <TouchableOpacity onPress = {() => { navigation.navigate('rAdd')}} style = {{marginLeft : 10,width : 50,height:'100%'}}>
                   <FontAwesomeIcon style ={styles.iconArrow} icon={faBars}/>
+                </TouchableOpacity>
                     <Text style = {styles.topicText}> Vehicle Rental</Text>
                 </View>
             <View style={styles.Cols}> 
               <View style={styles.Rows}> 
-                <TouchableOpacity 
+                <TouchableOpacity onPress = {() => navigation.navigate('create')}
                       style = {styles.saveButton}>
                        <FontAwesomeIcon size={50} icon={faPlusSquare}/>
                       <Text style = {styles.log}>Create</Text>
                   </TouchableOpacity>
-                  <TouchableOpacity 
+                  <TouchableOpacity onPress = {() => navigation.navigate('mlist')} 
                       style = {styles.saveButton}>
                        <FontAwesomeIcon size={50} icon={faEdit}/>
                       <Text style = {styles.log}>Manage</Text>
                   </TouchableOpacity>
               </View>
               <View style={styles.Rows}> 
-                <TouchableOpacity 
+                <TouchableOpacity onPress = {() => navigation.navigate('list')} 
                       style = {styles.saveButton}>
                       <FontAwesomeIcon size={50} icon={faList}/>
                       <Text style = {styles.log}>Request</Text>
                       <Text style = {styles.log}>Request</Text>
                      
                   </TouchableOpacity>
-                  <TouchableOpacity 
+                  <TouchableOpacity onPress = {() => navigation.navigate('dash')} 
                       style = {styles.saveButton}>
                       <FontAwesomeIcon size={50} icon={faKey}/>
                       <Text style = {styles.log}>Rent</Text>
                   </TouchableOpacity>
               </View>
               <View style={styles.Rows}> 
-                <TouchableOpacity 
+                <TouchableOpacity onPress = {() => navigation.navigate('reserve')}
                       style = {styles.saveButton}>
                        <FontAwesomeIcon size={50} icon={faTasks}/>
                       <Text style = {styles.log}>Rented List</Text>
@@ -143,7 +131,7 @@ const styles = StyleSheet.create({
     fontWeight : "bold"
   },
   topicText : {
-    marginLeft : 35,
+    marginLeft : 15,
     fontSize : 26,
     fontWeight : "bold"
   },
@@ -208,7 +196,8 @@ const styles = StyleSheet.create({
     
   },
   iconArrow: {
-    left : 25,
+    marginLeft : 10,
+    top : 8
   },
   btnFace : {
     height : 60,
