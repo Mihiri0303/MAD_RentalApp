@@ -29,7 +29,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Dash">
+        <Stack.Navigator initialRouteName="dash">
           <Stack.Screen name="dash" component={Dash} options={{headerShown:false}} />
           <Stack.Screen name="add" component={Add} options={{headerShown:false}}/>
           <Stack.Screen name="log" component={Login} options={{headerShown:false}}/>

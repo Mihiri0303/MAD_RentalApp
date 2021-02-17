@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "85207913748",
-    "project_id": "madapp-27b70",
-    "storage_bucket": "madapp-27b70.appspot.com"
+    "project_number": "89011395712",
+    "project_id": "mad-rentalapp",
+    "storage_bucket": "mad-rentalapp.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:85207913748:android:ea9c09a7e76ab069d61e01",
+        "mobilesdk_app_id": "1:89011395712:android:3aa00c7f3efb167887da65",
         "android_client_info": {
           "package_name": "com.mad_rentalapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "85207913748-e7ripfa38b40t5pu8b398jtph5vg0mb2.apps.googleusercontent.com",
+          "client_id": "89011395712-25u8tp7bu1v0r3620knm5nnfki3r1efe.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB69533c6PkmgNQGognwxCvJ5_jKKluaaI"
+          "current_key": "AIzaSyCmRNDuX8IPO6HjoAFDXcEWsC-AN6SMb4k"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "85207913748-e7ripfa38b40t5pu8b398jtph5vg0mb2.apps.googleusercontent.com",
+              "client_id": "89011395712-25u8tp7bu1v0r3620knm5nnfki3r1efe.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

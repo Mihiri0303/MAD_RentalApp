@@ -13,23 +13,38 @@ const Login = ({navigation}) => {
   }
   const dispatch = useDispatch();
    const login = async () =>  {
-    // const coll = firestore().collection('Users');
-    // const snap = await coll.where('EMail', '==', email).where('Password', '==', password).get();
-    // console.log(snap);
-    //   if(snap.empty){
-    //       Alert.alert(
-    //         "Login Error",
-    //         "Email Or Password is incorrect ",
-    //         [
-    //           { text: "OK" }
-    //         ],
-    //         { cancelable: false }
-    //       );
-    //   }else{
-    //     dispatch({ type: 'SetLogginStatus' });
-    //     navigation.navigate('dash');
-    //   }
-    }
+    firestore()
+    .collection('Users')
+    .where("Email", "==", email)
+    .where("Password", "==", password)
+    .get()
+    .then(snap  => {
+      // console.log(snap.docs.forEach(data => console.log(data.data())));
+        if(snap.empty){
+            Alert.alert(
+              "Login Error",
+              "Email Or Password is incorrect ",
+              [
+                { text: "OK" }
+              ],
+              { cancelable: false }
+            );
+        }else{
+          const user = snap.docs[0].data();
+          switch (user.UserType) {
+            case "renter":
+              navigation.navigate('manage');
+              break;
+            case "user":
+              navigation.navigate('dash');
+              break;
+            default:
+              return;
+          }
+          dispatch({ type: 'SetLogginStatus' });
+        }
+    });
+  }
   return (
     <> 
         <View style={styles.container}>

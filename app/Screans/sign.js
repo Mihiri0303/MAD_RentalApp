@@ -4,10 +4,65 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faArrowLeft,} from '@fortawesome/free-solid-svg-icons';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { CheckBox } from 'react-native-elements';
+import firestore from '@react-native-firebase/firestore';
+
 
 const Sign = ({navigation}) => {
 
+  const [FirstName,setFirstName] = useState('');
+  const [LastName,setLastName] = useState('');
+  const [MobileNo,setMobileNo] = useState('');
+  const [UserType,setUserType] = useState('');
+  const [Email,setEmail] = useState('');
+  const [Password,setPassword] = useState('');
+  const [ConfirmPassword,setConfirmPassword] = useState('');
+  const [IsChecked,setIsChecked] = useState(false);
 
+  const SignUp = () => {
+    if(Password != ConfirmPassword){
+      Alert.alert(
+        "Error",
+        "Password doesn't match ",
+        [
+          { text: "OK" }
+        ],
+      );
+      return;
+    }
+    if(!IsChecked){
+      Alert.alert(
+        "Error",
+        "Password doesn't match ",
+        [
+          { text: "OK" }
+        ],
+      );
+      return;
+    }
+    firestore().
+    collection('Users')
+    .add({
+      FirstName,
+      LastName,
+      Email,
+      UserType,
+      Password,
+      MobileNo
+    })
+    .then(() => {
+      console.log('User added!');
+    });
+    switch (UserType) {
+      case "renter":
+        navigation.navigate('manage');
+        break;
+      case "user":
+        navigation.navigate('dash');
+        break;
+        default:
+        return;
+    }
+  }
 
   return (
     <>
@@ -23,24 +78,28 @@ const Sign = ({navigation}) => {
                 underlineColorAndroid = "transparent"
                 placeholder = "First Name"
                 placeholderTextColor = '#676060'
+                onChangeText = {text => setFirstName(text)}
                 autoCapitalize = "none"/>
               <TextInput style = {styles.input}
                 underlineColorAndroid = "transparent"
                 placeholder = "Last Name"
                 placeholderTextColor = '#676060'
+                onChangeText = {text => setLastName(text)}
                 autoCapitalize = "none"/>
               <TextInput style = {styles.input}
                 underlineColorAndroid = "transparent"
                 placeholder = "Mobile no"
                 placeholderTextColor = '#676060'
+                onChangeText = {text => setMobileNo(text)}
                 autoCapitalize = "none"/>
               <DropDownPicker
                   items={[
-                      {label: "Renter", value: 'rent'},
-                      {label: "User", value: 'use' }]}
+                      {label: "Renter", value: 'renter'},
+                      {label: "User", value: 'user' }]}
                         containerStyle={{height:40,width:"80%",marginTop:10,borderRadius:5}}
                         selectedLabelStyle = {{color:"#000"}}
                         placeholderStyle = {{color:"#676060",right :6}}
+                        onChangeItem = { (item,index) => setUserType(item["value"])}
                   itemStyle={{
                        justifyContent: 'flex-start'}}
                   dropDownStyle={{backgroundColor: '#fafafa', borderColor: '#676060',borderWidth : 1}}/>
@@ -48,23 +107,28 @@ const Sign = ({navigation}) => {
                 underlineColorAndroid = "transparent"
                 placeholder = "E-mail"
                 placeholderTextColor = '#676060'
+                onChangeText = {text => setEmail(text)}
                 autoCapitalize = "none"/>
               <TextInput style = {styles.input}
                 underlineColorAndroid = "transparent"
                 placeholder = "Password"
                 placeholderTextColor = '#676060'
+                onChangeText = {text => setPassword(text)}
                 autoCapitalize = "none"/>
               <TextInput style = {styles.input}
                 underlineColorAndroid = "transparent"
                 placeholder = "Confirm Password"
                 placeholderTextColor = '#676060'
+                onChangeText = {text => setConfirmPassword(text)}
                 autoCapitalize = "none"/>
               <CheckBox
                 title='Agree to the terms and conditions'
                 containerStyle = {{backgroundColor:"none",borderColor:"#fff",marginTop :-9,marginBottom :-10,right :14}}
                 // checked={this.state.checked}
+                checked = {IsChecked}
+                onPress={() => setIsChecked(!IsChecked)}
               />
-              <TouchableOpacity onPress = {() => navigation.navigate('dash')}
+              <TouchableOpacity onPress = {SignUp}
                  style = {styles.loginButton}>
                 <Text style = {styles.log}>SIGN UP</Text>
               </TouchableOpacity>

@@ -3,10 +3,19 @@ import {StyleSheet,View,Text,StatusBar,TouchableOpacity} from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faArrowLeft,faBars,faPlusSquare} from '@fortawesome/free-solid-svg-icons';
 import DropDownPicker from 'react-native-dropdown-picker';
+import {useSelector} from 'react-redux';
 
 
 const Zoom = ({navigation}) => {
 
+  const State = useSelector(state => state);
+  const Reserve = () => {
+    if(State.is_logged){
+      navigation.navigate('dash');
+    }else{
+      navigation.navigate('log');
+    }
+  }; 
   return (
     <>
               <StatusBar barStyle="dark-content" />
@@ -56,7 +65,7 @@ const Zoom = ({navigation}) => {
                        justifyContent: 'flex-start'}}
                   dropDownStyle={{backgroundColor: '#fafafa', borderColor: '#676060',borderWidth : 1}}/>
                
-                <TouchableOpacity onPress = {() => navigation.navigate('dash')}
+                <TouchableOpacity onPress = {Reserve}
                       style = {styles.signButton}>
                       <Text style = {styles.log}>Reserve</Text>
                   </TouchableOpacity>
