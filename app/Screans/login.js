@@ -1,8 +1,9 @@
-import React,{useState} from 'react';
+import React,{useState,useCallback} from 'react';
 import {StyleSheet,View,Text,StatusBar,Image,TouchableOpacity,TextInput,Alert} from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faArrowLeft,} from '@fortawesome/free-solid-svg-icons';
-
+import {useDispatch, useSelector } from 'react-redux';
+import firestore from '@react-native-firebase/firestore';
 
 const Login = ({navigation}) => {
   const [email,setEmail] = useState('');
@@ -10,18 +11,25 @@ const Login = ({navigation}) => {
   const handleEmail = (text) => {
     setEmail(text);
   }
-
-  const login = () => {
-    // Alert.alert(
-    //   "Login Al",
-    //   "Email : "+email+ " AND Password : "+password,
-    //   [
-    //     { text: "OK", onPress: () => console.log("OK Pressed") }
-    //   ],
-    //   { cancelable: false }
-    // );
-    navigation.navigate('Sign');
- }
+  const dispatch = useDispatch();
+   const login = async () =>  {
+    // const coll = firestore().collection('Users');
+    // const snap = await coll.where('EMail', '==', email).where('Password', '==', password).get();
+    // console.log(snap);
+    //   if(snap.empty){
+    //       Alert.alert(
+    //         "Login Error",
+    //         "Email Or Password is incorrect ",
+    //         [
+    //           { text: "OK" }
+    //         ],
+    //         { cancelable: false }
+    //       );
+    //   }else{
+    //     dispatch({ type: 'SetLogginStatus' });
+    //     navigation.navigate('dash');
+    //   }
+    }
   return (
     <> 
         <View style={styles.container}>
@@ -43,7 +51,7 @@ const Login = ({navigation}) => {
                 placeholderTextColor = '#676060' 
                 autoCapitalize = "none"
                 onChangeText = {text => setPassword(text)}/>
-              <TouchableOpacity onPress = {() => navigation.navigate('dash')}
+              <TouchableOpacity onPress = {login}
               style = {styles.loginButton}>
                 <Text style = {styles.log}>LOGIN</Text>
               </TouchableOpacity>

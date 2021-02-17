@@ -1,13 +1,13 @@
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import {StyleSheet,View,Text,StatusBar,Image,TouchableOpacity,TextInput,Alert} from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faArrowLeft,} from '@fortawesome/free-solid-svg-icons';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { CheckBox } from 'react-native-elements';
 
-
-
 const Sign = ({navigation}) => {
+
+
 
   return (
     <>

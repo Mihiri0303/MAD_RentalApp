@@ -17,30 +17,37 @@ import List from './Screans/list';
 import RList from './Screans/reserve';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import Reducer from './Reducers';
+import {Provider} from 'react-redux';
+import { createStore } from 'redux';
+
+const store = createStore(Reducer);
 
 const Stack = createStackNavigator();
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Dash">
-        <Stack.Screen name="dash" component={Dash} options={{headerShown:false}} />
-        <Stack.Screen name="add" component={Add} options={{headerShown:false}}/>
-        <Stack.Screen name="log" component={Login} options={{headerShown:false}}/>
-        <Stack.Screen name="sign" component={Sign} options={{headerShown:false}}/>
-        <Stack.Screen name="filter" component={Filter} options={{headerShown:false}}/>
-        <Stack.Screen name="about" component={About} options={{headerShown:false}}/>
-        <Stack.Screen name="prof" component={Profile} options={{headerShown:false}}/>
-        <Stack.Screen name="zoom" component={Zoom} options={{headerShown:false}}/>
-        <Stack.Screen name="reserve" component={RList} options={{headerShown:false}}/>
-        <Stack.Screen name="manage" component={Manage} options={{headerShown:false}}/>
-        <Stack.Screen name="rAdd" component={Rentadd} options={{headerShown:false}}/>
-        <Stack.Screen name="create" component={Create} options={{headerShown:false}}/>
-        <Stack.Screen name="mlist" component={MList} options={{headerShown:false}}/>
-        <Stack.Screen name="list" component={List} options={{headerShown:false}}/>
-        <Stack.Screen name="mod" component={Modify} options={{headerShown:false}}/>
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Dash">
+          <Stack.Screen name="dash" component={Dash} options={{headerShown:false}} />
+          <Stack.Screen name="add" component={Add} options={{headerShown:false}}/>
+          <Stack.Screen name="log" component={Login} options={{headerShown:false}}/>
+          <Stack.Screen name="sign" component={Sign} options={{headerShown:false}}/>
+          <Stack.Screen name="filter" component={Filter} options={{headerShown:false}}/>
+          <Stack.Screen name="about" component={About} options={{headerShown:false}}/>
+          <Stack.Screen name="prof" component={Profile} options={{headerShown:false}}/>
+          <Stack.Screen name="zoom" component={Zoom} options={{headerShown:false}}/>
+          <Stack.Screen name="reserve" component={RList} options={{headerShown:false}}/>
+          <Stack.Screen name="manage" component={Manage} options={{headerShown:false}}/>
+          <Stack.Screen name="rAdd" component={Rentadd} options={{headerShown:false}}/>
+          <Stack.Screen name="create" component={Create} options={{headerShown:false}}/>
+          <Stack.Screen name="mlist" component={MList} options={{headerShown:false}}/>
+          <Stack.Screen name="list" component={List} options={{headerShown:false}}/>
+          <Stack.Screen name="mod" component={Modify} options={{headerShown:false}}/>
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 };
 

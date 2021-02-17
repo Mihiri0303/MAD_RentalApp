@@ -1,14 +1,30 @@
-import React,{useState} from 'react';
+import React,{useEffect} from 'react';
 import {StyleSheet,View,Text,StatusBar,Image,TouchableOpacity,TextInput} from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faArrowLeft,faBars,faFilter,faSearch,faPlusSquare} from '@fortawesome/free-solid-svg-icons';
 import { CheckBox,Header,Slider,Card } from 'react-native-elements';
+import {useSelector} from 'react-redux';
+import firestore from '@react-native-firebase/firestore';
+
 
 
 const Dash = ({navigation}) => {
   
+  const State = useSelector(state => state);
 
+  const Reserve = () => {
+    if(State.is_logged){
+      navigation.navigate('manage');
+    }else{
+      navigation.navigate('log');
+    }
+  }; 
 
+  useEffect(() => {
+    const usersCollection = firestore().collection('Users').get().then(col => {
+      console.log(col);
+    });
+  });
   return (
     <>
               <StatusBar barStyle="dark-content" />
@@ -36,7 +52,7 @@ const Dash = ({navigation}) => {
                 <Text style ={{fontSize : 13, marginLeft : 130, marginTop : 3}}>Licence Type : Heavy vehicle</Text>
                 <Text style ={{fontSize : 15, marginLeft : 130 , fontWeight :'bold', marginTop : 3, textDecorationLine : "underline"}}>RS.1000.00/hr</Text>
                 <Text style ={{fontSize : 15, marginLeft : 130 , fontWeight :'bold'}}>RS.24000.00/day</Text>
-                <TouchableOpacity onPress = {() => navigation.navigate('manage')}
+                <TouchableOpacity onPress = {Reserve}
                   style = {styles.signButton}>
                   <Text style = {{color : '#ffffff',fontSize :13}}>Reserve</Text>
               </TouchableOpacity>
