@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "85207913748",
+    "project_id": "madapp-27b70",
+    "storage_bucket": "madapp-27b70.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:85207913748:android:ea9c09a7e76ab069d61e01",
+        "android_client_info": {
+          "package_name": "com.mad_rentalapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "85207913748-e7ripfa38b40t5pu8b398jtph5vg0mb2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB69533c6PkmgNQGognwxCvJ5_jKKluaaI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "85207913748-e7ripfa38b40t5pu8b398jtph5vg0mb2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
